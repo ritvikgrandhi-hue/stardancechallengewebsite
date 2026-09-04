@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ritvik Grandhi | Student Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+    <header class="header">
+            <a href="index.html" class="logo">
+                    Ritvik <span>Grandhi</span>
+            </a>
+            <nav class="navbar">
+
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+            </nav>
+    </header>
+
+    <main>
+        <h1 class="projects-heading">PROJECTS</h1>
+        <p class="projects-intro"> This page will document all of the engineering projects I make as a hobby, for competitions, and even for school. It will include
+            software projects, hardware projects, and everything in between as well.
+        </p>
+        <hr>
+
+        <button id="add-project">Add Project</button>
+        <div id="project-form" class="project-form">
+            <input type="text" id="project-name" placeholder="Project name">
+            <textarea id="project-description" placeholder="Project description"></textarea>
+            <div class="image-input">
+                <input type="file" id="project-image" accept="image/*">
+                <button id="remove-image" type="button">Remove Image</button>
+            </div>
+            <div class="project-actions">
+                <button id="save-project">Save Project</button>
+                <button id="cancel-project">Cancel</button>
+            </div>
+        </div>
+        
+        <div class="project-styling">
+            <div class="project-cards"><!-- js fills in rest --></div>
+        </div>
+            <div id="project-view"> 
+                <button id="back-to-projects">← Back to Projects</button>
+                <h2 id="view-project-title"></h2>
+                <p id="view-project-description"></p>
+
+                <div class="devlog-section">
+                    <h2>Development Log</h2>
+                    <button id="add-devlog">Add Devlog</button>
+                    
+                    <div id="devlog-form">
+                        <input type="text" id="devlog-title" placeholder="Devlog title">
+                        <textarea id="devlog-content" placeholder="What did you work on?"></textarea>
+
+                        <div class="devlog-media">
+                            <label>Photos</label>
+                            <input type="file" id="devlog-photos" accept="image/*" multiple>
+
+                            <label>Videos</label>
+                            <input type="file" id="devlog-videos" accept="video/*" multiple>
+                        </div>
+
+                        <div class="devlog-actions">
+                            <button id="save-devlog">Save Devlog</button>
+                            <button id="cancel-devlog">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div id="devlog-list"></div>
+                </div>
+
+                <button id="edit-project">Edit Project</button>
+                <button id="delete-project">Delete Project</button>
+            </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>

@@ -10,18 +10,16 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-    <header>
-        <!-- Navigation -->
+    <header class="header">
+            <a href="index.html" class="logo">
+                    Ritvik <span>Grandhi</span>
+            </a>
             <nav class="navbar">
-                <div class="badge">Ritvik Grandhi</div>
 
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">About</a></li>
-                    <li><a href="skills.html" class="active">Skills</a></li>
-                    <li><a href="index.html#projects" class="active">Projects</a></li>
-                    <li><a href="education.html" class="active">Education</a></li>
-                    <li><a href="index.html#contact" class="active">Contact</a></li>
-                    <li><a href="extracurriculars.html" class="active">Extracurriculars</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
 
             </nav>
@@ -29,7 +27,7 @@
 
 <main>
 
-    <div class="card">
+    <div>
         <div>Student Portfolio</div>
         <h1>Ritvik Grandhi</h1>
 
@@ -40,12 +38,12 @@
 
 <!-- About -->
 
-<section id="about">
-    <div class="container">
-        <h2 class="section-title">About Me</h2>
+<section>
+    <div>
+        <h2>About Me</h2>
 
-        <div class="content">
-            <div class="card">
+        <div>
+            <div>
                 <p>
                 Hi, I'm Ritvik Grandhi, a high school student with a passion for mechanical engineering, volleyball, and photography.
                 I enjoy using my creativity with technology to design innovative solutions, as well as competing on the volleyball court.
@@ -53,8 +51,8 @@
                 </p>
             </div>
 
-            <div class="card-photo">
-                <img src="capimage.jpeg" alt="Photo of Ritvik Grandhi" style="width: 300px; height: auto;" class="rounded-corners">
+            <div>
+                <img src="capimage.jpeg" alt="Photo of Ritvik Grandhi" style="width: 300px; height: auto;">
             </div>
         </div>
     </div>
@@ -64,12 +62,12 @@
 
 <!-- SKILLS -->
 
-<section id="skills">
-    <div class="container">
-        <h2 class="section-title">Skills & Tools</h2>
+<section>
+    <div>
+        <h2>Skills & Tools</h2>
 
-        <div class="content">
-            <div class="card">
+        <div>
+            <div>
                 <h3>Skills</h3>
                 <ul>
                     <li>Mechanical Design</li>
@@ -79,7 +77,7 @@
                 </ul>
             </div>
 
-            <div class="card">
+            <div>
                 <h3>Certifications</h3>
                 <ul>
                     <li>Autodesk Fusion 360 Certified User (UDEMY COURSE)</li>
@@ -92,69 +90,15 @@
     </div>
 </section>
 
-<!-- PROJECTS -->
-
-<section id="projects">
-    <div class="container">
-        <h2 class="section-title">Projects</h2>
-
-        <div class="card">
-            <div>
-            Project Thumbnail
-            </div>
-
-            <h3>Robotic Arm</h3>
-
-            <p>
-            Designed and prototyped a functional mechanical system using servos and a raspberry pi 4.
-            </p>
-
-            <a href="#">View Project →</a>
-
-        </div>
-
-        <div class="card">
-            <div>
-            Project Thumbnail
-            </div>
-
-            <h3>Smart Lockbox</h3>
-
-            <p>
-            Created a smart lockbox using a raspberry pi 4 and a custom-designed enclosure to enhance security and convenience as a part of Fiserv FIN Techies.
-            </p>
-
-            <a href="#">View Project →</a>
-
-        </div>
-
-        <div class="card">
-            <div>
-            Project Thumbnail
-            </div>
-
-            <h3>Volleyball</h3>
-
-            <p>
-            Nothing yet
-            </p>
-
-            <a href="#">View Project →</a>
-
-        </div>
-
-    </div>
-</section>
-
 <!-- EDUCATION -->
 
-<section id="education">
+<section>
 
-    <div class="container">
+    <div>
 
-        <h2 class="section-title">Education</h2>
+        <h2>Education</h2>
 
-        <div class="card">
+        <div>
             <h4>High School Student</h4>
 
             <p>
@@ -163,7 +107,7 @@
 
         </div>
 
-        <div class="card">
+        <div>
             <h4>Relevant Coursework</h4>
 
             <p>
@@ -172,7 +116,7 @@
 
         </div>
 
-        <div class="card">
+        <div>
 
             <h4>Certifications & Activities</h4>
 
@@ -185,15 +129,27 @@
     </div>
 </section>
 
-<!-- CONTACT -->
+ <div class="background-model">
+      <model-viewer
+          src="generic_volleyball_ball_low-poly.glb"
+          auto-rotate
+          camera-controls
+          disable-zoom
+          interaction-prompt="none"
+          shadow-intensity="1"
+          exposure="1.2"
+          environment-image="neutral"
+          camera-orbit="45deg 75deg 3m">
 
+      </model-viewer>
+    </div>
 </main>
 
 <footer>
 
 <div class="container">
 
-© 2026 Ritvik Grandhi • Built with curiosity, creativity, and a passion for engineering.
+© 2026 Ritvik Grandhi
 
 </div>
 
