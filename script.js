@@ -21,9 +21,14 @@ const cancelDevlogButton = document.getElementById("cancel-devlog");
 const devlogList = document.getElementById("devlog-list");
 const devlogPhotos = document.getElementById("devlog-photos");
 const devlogVideos = document.getElementById("devlog-videos");
+const mediaViewer = document.getElementById("media-viewer");
+const mediaContainer = document.getElementById("media-container");
+const closeMediaButton = document.getElementById("close-media");
 
 const projects = [];
+//sets project and devlog to null to ask whether editing project or saving
 let currentProject = null;
+let currentDevlog = null;
 
 const editProjectButton = document.getElementById("edit-project");
 
@@ -187,11 +192,43 @@ cancelDevlogButton.addEventListener("click", function() {
     devlogForm.style.display = "none";
     devlogList.style.display = "block";
 
+    //prevents page from thinking we are still editing if we cancel and create a new one
+    currentDevlog = null;
+
     devlogTitle.value = "";
     devlogContent.value = "";
 });
 
 saveDevlogButton.addEventListener("click", function() {
+    //if currentDevlog = devlog, it will edit, or else it will create
+
+    if (currentDevlog) {
+        currentDevlog.title = devlogTitle.value;
+        currentDevlog.content = devlogContent.value;
+
+        if (devlogPhotos.files.length > 0) {
+            currentDevlog.photos = [];
+            //imitates the for loop that changes the photos in variable "devlog" line 218
+            for (const photo of devlogPhotos.files) {
+            currentDevlog.photos.push(photo);
+            }
+        }
+            
+        if (devlogVideos.files.length > 0) {
+            currentDevlog.videos = [];
+            //imitates the for loop that changes the videos in variable "devlog" line idk
+            for (const video of devlogVideos.files) {
+            currentDevlog.videos.push(video);
+            }   
+        }   
+        displayDevlogs();
+
+        devlogForm.style.display = "none";
+        devlogList.style.display = "block";
+        currentDevlog = null;
+        return;
+        // edits it or creates new
+    }
     const devlog = {
         id: Date.now(),
         title: devlogTitle.value,
@@ -243,6 +280,16 @@ function displayDevlogs() {
             const imageElement = document.createElement("img");
 
             imageElement.src = URL.createObjectURL(photo);
+            //if image is clicked, opens in a modal
+            imageElement.addEventListener("click", function() {
+                mediaContainer.innerHTML = "";
+
+                const enlargedImage = document.createElement("img");
+                enlargedImage.src = imageElement.src;
+
+                mediaContainer.appendChild(enlargedImage);
+                mediaViewer.showModal();
+            });
 
             devlogElement.appendChild(imageElement);
         });
@@ -252,10 +299,52 @@ function displayDevlogs() {
 
             videoElement.src = URL.createObjectURL(video);
             videoElement.controls = true;
+            //if video is clicked, opens in a modal
+            videoElement.addEventListener("click", function() {
+                mediaContainer.innerHTML = "";
 
+                const enlargedVideo = document.createElement("video");
+                enlargedVideo.src = videoElement.src;
+                enlargedVideo.controls = true;
+
+                mediaContainer.appendChild(enlargedVideo);
+                mediaViewer.showModal();
+            });
+            
             devlogElement.appendChild(videoElement);
         });
+        //devlog actions tab
+        const devlogActions = document.createElement("div");
+        devlogActions.classList.add("devlog-actions");
+        //creates edit button in devlog actions tab for html
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        devlogActions.appendChild(editButton);
+        //creates edit button functionality
+        editButton.addEventListener("click", function() {
+            currentDevlog = devlog;
+            devlogForm.style.display = "block";
+            devlogList.style.display = "none";
+            devlogTitle.value = devlog.title;
+            devlogContent.value = devlog.content;
+        });
+        //creates delete button in devlog actions tab
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        devlogActions.appendChild(deleteButton);
+
+
+
+        devlogElement.appendChild(devlogActions);
+
 
         devlogList.appendChild(devlogElement);
     });
 }
+
+closeMediaButton.addEventListener("click", function() {
+    mediaViewer.close();
+});

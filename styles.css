@@ -455,3 +455,41 @@ footer {
     margin-top: 15px;
 
 }
+
+.devlog {
+    border: 2px solid #00c9d4;
+    padding: 20px;
+    margin: 20px;
+}
+
+.devlog img,
+.devlog video {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 10px;
+}
+
+#media-viewer {
+    background: rgba(12, 22, 65, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#media-container img {
+    border: 2px solid #00c9d4;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+#media-container video {
+    border: 2px solid #00c9d4;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+#close-media:hover {
+    background-color:#ff1d15;
+    color: white;
+
+}
