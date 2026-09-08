@@ -24,6 +24,14 @@ const devlogVideos = document.getElementById("devlog-videos");
 const mediaViewer = document.getElementById("media-viewer");
 const mediaContainer = document.getElementById("media-container");
 const closeMediaButton = document.getElementById("close-media");
+const logoutButton = document.getElementById("logout");
+
+let isAdmin = true;//sessionStorage.getItem("isAdmin") === "true";; // Change this to false to simulate a non-admin user
+
+logoutButton.addEventListener("click", function() {
+    sessionStorage.removeItem("isAdmin");
+    window.location.href = "admin.html";
+});
 
 const projects = [];
 //sets project and devlog to null to ask whether editing project or saving
@@ -113,6 +121,12 @@ saveProjectButton.addEventListener("click", function() {
     description.classList.add("project-description");
     description.textContent = projectDescription.value;
     newProject.appendChild(description);
+    //counts number of devlogs in each project and displays it on the project card
+    const devlogCount = document.createElement("p");
+    devlogCount.classList.add("devlog-count");
+    devlogCount.textContent = `${project.devlogs.length} Devlogs`;
+
+    newProject.appendChild(devlogCount);
 
     project.card = newProject;
     projectCards.appendChild(newProject);
@@ -161,6 +175,8 @@ editProjectButton.addEventListener("click", function() {
 
     projectName.value = currentProject.name;
     projectDescription.value = currentProject.description;
+
+    projectImage.value = "";
 });
 
 deleteProjectButton.addEventListener("click", function() {
@@ -184,8 +200,15 @@ deleteProjectButton.addEventListener("click", function() {
 });
 
 addDevlogButton.addEventListener("click", function() {
+    currentDevlog = null;
+
     devlogForm.style.display = "block";
     devlogList.style.display = "none";
+
+    devlogTitle.value = "";
+    devlogContent.value = "";
+    devlogPhotos.value = "";
+    devlogVideos.value = "";
 });
 
 cancelDevlogButton.addEventListener("click", function() {
@@ -197,6 +220,8 @@ cancelDevlogButton.addEventListener("click", function() {
 
     devlogTitle.value = "";
     devlogContent.value = "";
+    devlogPhotos.value = "";
+    devlogVideos.value = "";
 });
 
 saveDevlogButton.addEventListener("click", function() {
@@ -233,7 +258,11 @@ saveDevlogButton.addEventListener("click", function() {
         id: Date.now(),
         title: devlogTitle.value,
         content: devlogContent.value,
-        date: new Date().toLocaleDateString(),
+        date: new Date().toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }),
         photos: [],
         videos: []
     };
@@ -245,7 +274,8 @@ saveDevlogButton.addEventListener("click", function() {
         devlog.videos.push(video);
     }
 
-    currentProject.devlogs.push(devlog);
+    currentProject.devlogs.unshift(devlog);
+    updateDevlogCount(currentProject);
 
     displayDevlogs();
 
@@ -269,6 +299,9 @@ function displayDevlogs() {
         const dateElement = document.createElement("p");
         dateElement.textContent = devlog.date;
 
+        const devlogMedia = document.createElement("div");
+        devlogMedia.classList.add("devlog-media");
+
         const contentElement = document.createElement("p");
         contentElement.textContent = devlog.content;
 
@@ -291,7 +324,7 @@ function displayDevlogs() {
                 mediaViewer.showModal();
             });
 
-            devlogElement.appendChild(imageElement);
+            devlogMedia.appendChild(imageElement);
         });
 
         devlog.videos.forEach(function(video) {
@@ -311,8 +344,9 @@ function displayDevlogs() {
                 mediaViewer.showModal();
             });
             
-            devlogElement.appendChild(videoElement);
+            devlogMedia.appendChild(videoElement);
         });
+        devlogElement.appendChild(devlogMedia);
         //devlog actions tab
         const devlogActions = document.createElement("div");
         devlogActions.classList.add("devlog-actions");
@@ -335,8 +369,13 @@ function displayDevlogs() {
         deleteButton.textContent = "Delete";
 
         devlogActions.appendChild(deleteButton);
-
-
+        //creates delete button functionality
+        deleteButton.addEventListener("click", function() {
+            const index = currentProject.devlogs.indexOf(devlog);
+            currentProject.devlogs.splice(index, 1);
+            updateDevlogCount(currentProject);
+            displayDevlogs();
+        });
 
         devlogElement.appendChild(devlogActions);
 
@@ -348,3 +387,27 @@ function displayDevlogs() {
 closeMediaButton.addEventListener("click", function() {
     mediaViewer.close();
 });
+
+function updateDevlogCount(project) {
+    const devlogCount = project.card.querySelector(".devlog-count");
+
+    devlogCount.textContent = `${project.devlogs.length} Devlog(s)`;
+}
+
+function updateAdminControls() {
+    if (isAdmin) {
+        addProjectButton.style.display = "block";
+        editProjectButton.style.display = "block";
+        deleteProjectButton.style.display = "block";
+        addDevlogButton.style.display = "block";
+        logoutButton.style.display = "block";
+    } else {
+        addProjectButton.style.display = "none";
+        editProjectButton.style.display = "none";
+        deleteProjectButton.style.display = "none";
+        addDevlogButton.style.display = "none";
+        logoutButton.style.display = "none";
+    }
+}
+
+updateAdminControls();

@@ -1,0 +1,21 @@
+{
+  "name": "stardancechallengewebsite",
+  "version": "1.0.0",
+  "description": "A responsive personal portfolio website built to showcase my software engineering projects, technical skill set, and professional experience.",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ritvikgrandhi-hue/stardancechallengewebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ritvikgrandhi-hue/stardancechallengewebsite/issues"
+  },
+  "homepage": "https://github.com/ritvikgrandhi-hue/stardancechallengewebsite#readme"
+}

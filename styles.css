@@ -460,14 +460,18 @@ footer {
     border: 2px solid #00c9d4;
     padding: 20px;
     margin: 20px;
+    border-radius: 12px;
+    background: rgba(0, 201, 212, 0.08);
 }
 
 .devlog img,
 .devlog video {
+    max-width: 100%;
     width: 200px;
     height: 200px;
     object-fit: contain;
     margin: 10px;
+    cursor: pointer;
 }
 
 #media-viewer {
@@ -491,5 +495,87 @@ footer {
 #close-media:hover {
     background-color:#ff1d15;
     color: white;
+}
 
+.devlog-media {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 5px;
+}
+
+#add-devlog {
+    width: 100%;
+    border-color: #00d440;
+    background: rgba(0, 212, 35, 0.08);
+    color: #b8c2c7;
+
+    border: 1px solid;
+    border-radius: 6px;
+
+    padding: 8px 14px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+    margin-bottom: 20px;
+}
+
+#add-devlog:hover {
+    color: #fafafa;
+    border-color: #00d440;
+    background: #00d440;
+}
+
+#delete-project {
+    border-color: #ff1d15;
+    background: rgba(255, 29, 21, 0.08);
+    color: #b8c2c7;
+
+    border: 1px solid;
+    border-radius: 6px;
+
+    padding: 8px 14px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+    margin-bottom: 20px;
+}
+
+#delete-project:hover {
+    color: #fafafa;
+    border-color: #ff1d15;
+    background: #ff1d15;
+}
+#edit-project {
+    border-color: #00c9d4;
+    background: rgba(0, 201, 212, 0.08);
+    color: #b8c2c7;
+
+    border: 1px solid;
+    border-radius: 6px;
+
+    padding: 8px 14px;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+    margin-bottom: 20px;
+}
+#edit-project:hover {
+    color: #fafafa;
+    border-color: #00c9d4;
+    background: #00c9d4;
+}
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    width: 100%;
+}
+.project-actions button{
+    flex: 1;
+}
+
+#logout {
+    margin-top: 40px;
 }
