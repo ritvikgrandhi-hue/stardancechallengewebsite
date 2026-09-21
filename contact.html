@@ -7,6 +7,8 @@
     <title>Ritvik Grandhi | Student Portfolio</title>
 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
+
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
@@ -28,12 +30,37 @@
 
     <main>  
         <h1 class="projects-heading">CONTACT</h1>
-        <p class="contact-intro"> This page will provide information on how to contact me for any inquiries, collaborations, or questions you may have. Feel free to reach out through the provided channels.
+        <p class="contact-intro"> This page will provide information on how to contact me for any collaborations or questions you may have. Feel free to reach out through the provided forms.
         </p>
         <hr>
 
-        <div class="projects-info">
-            <h2>Email</h2>
-            <p><a href="mailto:ritvikgrandhi@gmail.com">ritvikgrandhi@gmail.com</a></p>
+        <div class="contact-info">
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="First and Last Name" required>
+
+                <label for="email">Subject:</label>
+                <input type="text" id="contact-subject" name="subject" placeholder="Subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Message..." rows="5" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+            <div class="contact-logos">
+                <h2> Other Platforms:</h2>
+                    <a href="https://www.linkedin.com/in/ritvik-grandhi/" target="_blank">
+                        <img src="pictures/linkedin.png" style="width: 100px; height: auto"></img>
+                    </a>
+                    <a href="https://github.com/ritvikgrandhi" target="_blank">
+                        <img src="pictures/github.png" style="width: 100px; height: auto"></img>
+                    </a>
+                    <a href="https://www.instagram.com/ritvikgrandhi/" target="_blank">
+                        <img src="pictures/insta.png" style="width: 100px; height: auto"></img>
+                    </a>
+            </div>
         </div>
     </main>
+    <script src="contact.js"></script>
+</body>
+</html>

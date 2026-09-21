@@ -26,7 +26,7 @@ const mediaContainer = document.getElementById("media-container");
 const closeMediaButton = document.getElementById("close-media");
 const logoutButton = document.getElementById("logout");
 
-let isAdmin = true;//sessionStorage.getItem("isAdmin") === "true";; // Change this to false to simulate a non-admin user
+let isAdmin = sessionStorage.getItem("isAdmin") === "true";; // Change this to false to simulate a non-admin user
 
 logoutButton.addEventListener("click", function() {
     sessionStorage.removeItem("isAdmin");
@@ -95,6 +95,29 @@ saveProjectButton.addEventListener("click", function() {
         devlogs: [],
         card: null //just to remember: card isn't the data, it references the visual HTML representation of the data
     };
+
+    fetch("/api/projects", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: project.id,
+            name: project.name,
+            description: project.description,
+            devlogs: []
+        })
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log("Project saved to server:", data);
+    })
+    .catch(function(error) {
+        console.error("Error saving project:", error);
+    });
+
     projects.push(project);
     //creates project box
     const newProject = document.createElement("div");
@@ -411,3 +434,31 @@ function updateAdminControls() {
 }
 
 updateAdminControls();
+
+
+fetch("/api/projects")
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        data.forEach(function(project) {
+            const newProject = document.createElement("div");
+            newProject.classList.add("project-card");
+
+            const title = document.createElement("h2");
+            title.classList.add("project-title");
+            title.textContent = project.name;
+
+            const description = document.createElement("p");
+            description.classList.add("project-description");
+            description.textContent = project.description;
+
+            newProject.appendChild(title);
+            newProject.appendChild(description);
+
+            projectCards.appendChild(newProject);
+        });;
+    })
+    .catch(function(error) {
+        console.error("Error loading projects:", error);
+    });

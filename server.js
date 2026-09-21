@@ -14,7 +14,81 @@ const contentTypes = {
     ".mp4": "video/mp4"
 };
 
+const projects = [
+    {
+        id: 1,
+        name: "Test Project",
+        description: "Test 123",
+        image: null,
+        devlogs: []
+    }
+];
+
 const server = http.createServer(function(req, res) {
+    
+    if (req.url === "/api/projects" && req.method === "GET") {
+        res.writeHead(200, {
+            "Content-Type": "application/json"
+        });
+
+        res.end(JSON.stringify(projects));
+        return;
+    }
+    if (req.url === "/api/login" && req.method === "POST") {
+        let body = "";
+
+        req.on("data", function(chunk) {
+            body += chunk;
+        });
+
+        req.on("end", function() {
+            const login = JSON.parse(body);
+
+            if (
+                    login.username === process.env.ADMIN_USERNAME &&
+                    login.password === process.env.ADMIN_PASSWORD
+                ) {
+                res.writeHead(200, {
+                    "Content-Type": "application/json"
+                });
+
+                res.end(JSON.stringify({
+                    success: true
+                }));
+            } else {
+                res.writeHead(401, {
+                    "Content-Type": "application/json"
+                });
+
+                res.end(JSON.stringify({
+                    success: false
+                }));
+            }
+        });
+
+        return;
+    }
+    if (req.url === "/api/projects" && req.method === "POST") {
+        let body = "";
+
+        req.on("data", function(chunk) {
+            body += chunk;
+        });
+
+        req.on("end", function() {
+            const project = JSON.parse(body);
+
+            projects.push(project);
+
+            res.writeHead(201, {
+                "Content-Type": "application/json"
+            });
+
+            res.end(JSON.stringify(project));
+        });
+
+        return;
+    }
 
     let fileName = req.url;
 

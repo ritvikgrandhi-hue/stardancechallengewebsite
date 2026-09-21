@@ -579,3 +579,61 @@ footer {
 #logout {
     margin-top: 40px;
 }
+
+#contact-form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 25px;
+    background: rgba(48, 96, 108, 0.878);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+}
+
+.contact-info input,
+.contact-info textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+}
+
+#contact-form button {
+    flex: 1;
+    background: rgb(89, 167, 89);
+    color:  white;
+    width: 100%;
+    transition: 0.2s ease;
+    border: 1px solid;
+    border-color: #00f3ff;
+}
+
+#contact-form button:hover {
+    background: rgb(89, 167, 89);
+    color:  #bbff00;
+    border-color: #bbff00;
+    border: 1px solid;
+}
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.contact-info h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    align-self: center;
+    /*font-family: impact, sans-serif;*/
+}
+.contact-logos {
+    display: flex;
+    align-items: row;
+}
